@@ -4,15 +4,26 @@ import java.awt.Color;
 
 import javax.swing.JTextArea;
 
-import features.AutoSave;
+public class Editor extends JTextArea {
 
-public class Editor extends JTextArea{
+	private boolean isAutoSaveEnabled;
 
 	public Editor(int width, int height) {
-		setSize(width, height);
+		setSize(width / 2, height);
 		setBackground(Color.GRAY);
 		setVisible(true);
-		Thread autosave = new Thread(new AutoSave(this));
-		autosave.start();
+		this.isAutoSaveEnabled = true;
+		setFocusable(true);
+		requestFocus();
+		//addKeyListener(new HotKeyHandler(this));
 	}
+
+	public boolean isAutoSaveEnabled() {
+		return this.isAutoSaveEnabled;
+	}
+
+	public void setAutoSaveEnabled(boolean status) {
+		this.isAutoSaveEnabled = status;
+	}
+
 }
