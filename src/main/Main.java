@@ -6,11 +6,15 @@ import textEditor.Editor;
 
 public class Main extends JFrame{
 
+	private static final int WIDTH = 800;
+	private static final int HEIGHT = 600;
+	
 	public Main() {
-		setSize(800, 600);
+		setSize(WIDTH, HEIGHT);
 		setTitle("jEditor");
+		add(new Editor(WIDTH, HEIGHT));
 		setVisible(true);
-		add(new Editor(800, 600));
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	public static void main(String[] args) {
