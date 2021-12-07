@@ -3,6 +3,8 @@ package features;
 import textEditor.Editor;
 import textEditor.EncryptOutput;
 
+import java.util.concurrent.Semaphore;
+
 public class Controller {
     private Thread autosave;
     private Thread encrypt;
@@ -11,6 +13,7 @@ public class Controller {
     private Load loader;
     private static final String filePath = "Save.txt";
     private static Controller controller;
+    private Semaphore semaforo;
 
     public static Controller getConstructor(Editor editor, EncryptOutput encryptOutput) {
         if (controller == null) {
@@ -26,8 +29,9 @@ public class Controller {
         this.encryptOutput = encryptOutput;
         this.loader = Load.getContructor(filePath);
         this.loadFile();
-        this.autosave = new Thread(new AutoSave(editor));
-        this.encrypt = new Thread(new Encrypt(editor, encryptOutput));
+        this.semaforo = new Semaphore(1);
+        this.autosave = new Thread(new AutoSave(editor, semaforo));
+        this.encrypt = new Thread(new Encrypt(editor, encryptOutput, semaforo));
         if (this.editor.isAutoSaveEnabled()) {
             autosave.start();
         }
