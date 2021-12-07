@@ -14,7 +14,7 @@ public class EncryptOutput extends JTextArea {
 	private static final long serialVersionUID = 1L;
 
 	public EncryptOutput(int width, int height) {
-		setSize(width/2, height);
+		setSize(width/2 - 10, height);
 		setMaximumSize(new Dimension(width/2, height));
 		setLineWrap(true);
 		setEditable(false);
