@@ -26,7 +26,11 @@ public class Encrypt implements Runnable {
         String newEncryted = "";
         for (int i = 0; i < length; i++) {
             char c = this.text.charAt(i);
-            newEncryted += (char) (c - 2);
+            if(((int) c) != 10) {
+            	newEncryted += (char) (c - 2);
+            }else {
+            	newEncryted += c;
+            }
         }
         if (!(encrypted.equals(newEncryted))) {
             encrypted = newEncryted;

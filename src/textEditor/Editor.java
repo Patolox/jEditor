@@ -14,7 +14,7 @@ public class Editor extends JTextArea {
 	private boolean isAutoSaveEnabled;
 
 	public Editor(int width, int height) {
-		setSize(width/2, height);
+		setSize(width/2 - 10, height);
 		setMaximumSize(new Dimension(width/2, height));
 		setLineWrap(true);
 		setBackground(Color.GRAY);
